@@ -12,7 +12,7 @@ tar -C $build_dir/vendor -xzf cloudflared-stable-linux-amd64.tgz
 mkdir -p $build_dir/.profile.d
 echo 'PATH=$PATH:$HOME/vendor' > $build_dir/.profile.d/cloudflared.sh
 # Pull config from ENV
-ls $env_dir
 mkdir -p $build_dir/.cloudflared
 cp $env_dir/TUNNEL_CERT $build_dir/.cloudflared/cert.pem
-# cp $env_dir/$TUNNEL_CONFIG $build_dir/.cloudflared/`cat $env_dir/$TUNNEL_ID`.json
+tunnel_id=`cat $env_dir/TUNNEL_ID`
+cp $env_dir/$TUNNEL_CONFIG $build_dir/.cloudflared/${tunnel_id}.json
