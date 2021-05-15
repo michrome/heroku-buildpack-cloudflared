@@ -1,0 +1,15 @@
+#!/bin/sh
+
+build_dir=$1
+working_dir=`pwd`
+
+wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.tgz
+mkdir -p $build_dir/vendor
+tar -C $build_dir/vendor -xzf cloudflared-stable-linux-amd64.tgz
+
+mkdir -p $build_dir/.profile.d
+echo 'PATH=$PATH:$HOME/vendor' > $build_dir/.profile.d/cloudflared.sh
+
+mkdir -p $build_dir/.cloudflared
+printf "%s\n" "$TUNNEL_CERT" > $build_dir/.cloudflared/cert.pem
+printf "%s\n" "$TUNNEL_CONFIG" > $build_dir/.cloudflared/$TUNNEL_ID.json
