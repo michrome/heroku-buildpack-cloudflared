@@ -13,6 +13,6 @@ echo 'PATH=$PATH:$HOME/vendor' > $build_dir/.profile.d/cloudflared.sh
 # Pull config from ENV
 mkdir -p $build_dir/.cloudflared
 printf "%s\n" "$TUNNEL_CERT" > $build_dir/.cloudflared/cert.pem
-echo "Created cert"
-printf "%s\n" "$TUNNEL_CONFIG" > $build_dir/.cloudflared/$TUNNEL_ID.json
-echo "Created credentials-file"
+echo "Created cert from TUNNEL_CERT env"
+printf "%s\n" "$TUNNEL_CONFIG" > $build_dir/.cloudflared/${TUNNEL_ID}.json
+echo "Created credentials-file ${TUNNEL_ID}.json from TUNNEL_CONFIG env"
